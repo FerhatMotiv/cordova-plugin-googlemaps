@@ -1266,8 +1266,10 @@ Map.prototype.addPolyline = function(polylineOptions, callback) {
   });
 
   self.exec.call(self, function() {
-    polyline._privateInitialize();
-    delete polyline._privateInitialize;
+    if (polyline) {
+      polyline._privateInitialize();
+      delete polyline._privateInitialize;
+    }
 
     if (typeof callback === 'function') {
       callback.call(self, polyline);
